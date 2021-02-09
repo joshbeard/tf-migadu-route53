@@ -9,6 +9,11 @@ variable "migadu_dkim" {
   default = "Migadu dkim record"
 }
 
+variable "domain" {
+  description = "The domain to create records for."
+  type        = string
+}
+
 variable "zone_id" {
   description = "The Route53 zone id to manage records under."
   type        = string
