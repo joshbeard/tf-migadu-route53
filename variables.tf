@@ -8,3 +8,8 @@ variable "migadu_dkim" {
   type    = string
   default = "Migadu dkim record"
 }
+
+variable "zone_id" {
+  description = "The Route53 zone id to manage records under."
+  type        = string
+}
