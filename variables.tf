@@ -4,7 +4,7 @@ variable "mx_records" {
   default     = ["10 aspmx1.migadu.com","20 aspmx2.migadu.com"]
 }
 
-variable "migadu_dkim" {
+variable "dkim" {
   type    = string
   default = "Migadu dkim record"
 }
@@ -16,5 +16,10 @@ variable "domain" {
 
 variable "zone_id" {
   description = "The Route53 zone id to manage records under."
+  type        = string
+}
+
+variable "migadu_verify" {
+  description = "The Migadu verification key"
   type        = string
 }

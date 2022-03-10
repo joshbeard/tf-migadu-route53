@@ -44,7 +44,7 @@ resource "aws_route53_record" "site-dmarc" {
 resource "aws_route53_record" "site_dkim" {
   zone_id = var.zone_id
   name    = "default._domainkey.${var.domain}"
-  records = ["${var.migadu_dkim}"]
+  records = ["${var.dkim}"]
   type    = "TXT"
   ttl     = 1800
 }
