@@ -24,7 +24,7 @@ resource "aws_route53_record" "site-txt" {
   records = compact(concat([
       "hosted-email-verify=${var.migadu_verify}",
       "v=spf1 include:spf.migadu.com -all"
-  ], [var.keybase_record]))
+  ], var.txt_records))
 }
 
 #

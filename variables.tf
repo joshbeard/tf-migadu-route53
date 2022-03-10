@@ -23,3 +23,9 @@ variable "migadu_verify" {
   description = "The Migadu verification key"
   type        = string
 }
+
+variable "txt_records" {
+  description = "Additional TXT records to add"
+  default     = []
+  type        = list
+}
