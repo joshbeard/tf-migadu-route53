@@ -4,11 +4,6 @@ variable "mx_records" {
   default     = ["10 aspmx1.migadu.com","20 aspmx2.migadu.com"]
 }
 
-variable "dkim" {
-  type    = string
-  default = "Migadu dkim record"
-}
-
 variable "domain" {
   description = "The domain to create records for."
   type        = string

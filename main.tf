@@ -35,19 +35,12 @@ resource "aws_route53_record" "site-dmarc" {
   name    = "_dmarc.${var.domain}"
   type    = "TXT"
   ttl     = 3600
-  records = ["v=DMARC1; p=reject"]
+  records = ["v=DMARC1; p=quarantine"]
 }
 
 #
 # ==== DKIM
 #
-resource "aws_route53_record" "site_dkim" {
-  zone_id = var.zone_id
-  name    = "default._domainkey.${var.domain}"
-  records = ["${var.dkim}"]
-  type    = "TXT"
-  ttl     = 1800
-}
 resource "aws_route53_record" "site-dkim-1" {
   zone_id = var.zone_id
   name    = "key1._domainkey.${var.domain}"
@@ -68,4 +61,44 @@ resource "aws_route53_record" "site-dkim-3" {
   type    = "CNAME"
   ttl     = 3600
   records = ["key3.${var.domain}._domainkey.migadu.com"]
+}
+
+resource "aws_route53_record" "site-autoconfig" {
+  zone_id = var.zone_id
+  name    = "autoconfig.${var.domain}"
+  type    = "CNAME"
+  ttl     = 3000
+  records = ["autoconfig.migadu.com"]
+}
+
+resource "aws_route53_record" "site-autodiscover" {
+  zone_id = var.zone_id
+  name    = "_autodiscover._tcp.${var.domain}"
+  type    = "SRV"
+  ttl     = 3000
+  records = ["0 1 443 autodiscover.migadu.com."]
+}
+
+resource "aws_route53_record" "site-submissions" {
+  zone_id = var.zone_id
+  name    = "_submissions._tcp.${var.domain}"
+  type    = "SRV"
+  ttl     = 3000
+  records = ["0 1 465 smtp.migadu.com."]
+}
+
+resource "aws_route53_record" "site-imaps" {
+  zone_id = var.zone_id
+  name    = "_imaps._tcp.${var.domain}"
+  type    = "SRV"
+  ttl     = 3000
+  records = ["0 1 993 imap.migadu.com."]
+}
+
+resource "aws_route53_record" "site-pop3s" {
+  zone_id = var.zone_id
+  name    = "_pip3s._tcp.${var.domain}"
+  type    = "SRV"
+  ttl     = 3000
+  records = ["0 1 995 pip.migadu.com."]
 }
